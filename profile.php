@@ -4,10 +4,16 @@
 
 $users = array(
   array("name" => "Pablo", "email" => "Pablothehorse@gmail.com", "adress" => "Rua dos Cavalos Espanhois 130 4º Drt", "postal" => "243-17", "image" => "./images/profiles/10.jpg"),
-  array("name" => "Gustava", "email" => "Gustavamostarva@gmail.com", "adress" => "Rua dos Molhos ingleses 320 2º Esq", "postal" => "432-1", "image" => "./images/profiles/5.jpg")
+  array("name" => "Gustava", "email" => "Gustavamostarva@gmail.com", "adress" => "Rua dos Molhos ingleses 320 2º Esq", "postal" => "432-1", "image" => "./images/profiles/5.jpg"),
+  array("name" => "Anónimo", "email" => "Anonimo@gmail.com", "adress" => "Rua dos Segredos e Cadeados ??? 5º Lock 33" , "postal" => "###-#", "image" => null)
 );
 
-$currentUser = $users[1];
+$currentUser = $users[2];
+
+$image = $currentUser["image"]==null ? './images/profiles/default.png' : $currentUser["image"];
+
+// isset e usado para quando o paranto nao existe na base de dados
+
 ?>
 
 <!doctype html>
@@ -43,14 +49,14 @@ $currentUser = $users[1];
       <div class="col-12 col-lg-6">
 
         <div class="card text-center">
-          <img src=<?php echo $currentUser["image"]?> class="card-img-top mx-auto img-thumbnail rounded-circle " alt="...">
+          <img src="<?php echo $image; ?>" class="card-img-top mx-auto img-thumbnail rounded-circle " alt="...">
           <div class="card-body">
-            <h5 class="card-title"><?php echo $currentUser["name"] ?></h5>
-            <p class="card-text"><?php echo $currentUser["email"] ?></p>
+            <h5 class="card-title"><?php echo $currentUser["name"]; ?></h5>
+            <p class="card-text"><?php echo $currentUser["email"]; ?></p>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item"><?php echo $currentUser["adress"] ?></li>
-            <li class="list-group-item"><?php echo $currentUser["postal"] ?></li>
+            <li class="list-group-item"><?php echo $currentUser["adress"]; ?></li>
+            <li class="list-group-item"><?php echo $currentUser["postal"]; ?></li>
           </ul>
           <div class="card-body">
             <a href="#" class="card-link">Close</a>
