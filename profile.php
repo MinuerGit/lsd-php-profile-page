@@ -3,8 +3,8 @@
 // array asscociativo de 3 users
 
 $users = array(
-  array("name" => "Pablo", "email" => "Pablothehorse@gmail.com", "adress" => "Rua dos Cavalos Espanhois 130 4º Drt", "postal" => "243-17"),
-  array("name" => "Gustavo", "email" => "Gustamomostarvo@gmail.com", "adress" => "Rua dos Molhos ingleses 320 2º Esq", "postal" => "432-1")
+  array("name" => "Pablo", "email" => "Pablothehorse@gmail.com", "adress" => "Rua dos Cavalos Espanhois 130 4º Drt", "postal" => "243-17", "image" => "./images/profiles/10.jpg"),
+  array("name" => "Gustava", "email" => "Gustavamostarva@gmail.com", "adress" => "Rua dos Molhos ingleses 320 2º Esq", "postal" => "432-1", "image" => "./images/profiles/5.jpg")
 );
 
 $currentUser = $users[1];
@@ -12,6 +12,7 @@ $currentUser = $users[1];
 
 <!doctype html>
 <html lang="en">
+
 
 <head>
   <!-- Required meta tags -->
@@ -35,13 +36,14 @@ $currentUser = $users[1];
 </head>
 
 <body>
+  <img src="" alt="">
   <div class='container'>
     <div class="row">
       <div class="col"></div>
       <div class="col-12 col-lg-6">
 
         <div class="card text-center">
-          <img src="./images/profiles/10.jpg" class="card-img-top mx-auto img-thumbnail rounded-circle " alt="...">
+          <img src=<?php echo $currentUser["image"]?> class="card-img-top mx-auto img-thumbnail rounded-circle " alt="...">
           <div class="card-body">
             <h5 class="card-title"><?php echo $currentUser["name"] ?></h5>
             <p class="card-text"><?php echo $currentUser["email"] ?></p>
