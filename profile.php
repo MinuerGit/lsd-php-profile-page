@@ -1,3 +1,15 @@
+<?php $userName = "Carlos Pablo";
+
+// array asscociativo de 3 users
+
+$users = array(
+  array("name" => "Pablo", "email" => "Pablothehorse@gmail.com", "adress" => "Rua dos Cavalos Espanhois 130 4º Drt", "postal" => "243-17"),
+  array("name" => "Gustavo", "email" => "Gustamomostarvo@gmail.com", "adress" => "Rua dos Molhos ingleses 320 2º Esq", "postal" => "432-1")
+);
+
+$currentUser = $users[1];
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -31,12 +43,12 @@
         <div class="card text-center">
           <img src="./images/profiles/10.jpg" class="card-img-top mx-auto img-thumbnail rounded-circle " alt="...">
           <div class="card-body">
-            <h5 class="card-title">João Franco</h5>
-            <p class="card-text">joao.franco@gmail.com</p>
+            <h5 class="card-title"><?php echo $currentUser["name"] ?></h5>
+            <p class="card-text"><?php echo $currentUser["email"] ?></p>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Rua da Pimenta, 4</li>
-            <li class="list-group-item">1503-300 Lisboa</li>
+            <li class="list-group-item"><?php echo $currentUser["adress"] ?></li>
+            <li class="list-group-item"><?php echo $currentUser["postal"] ?></li>
           </ul>
           <div class="card-body">
             <a href="#" class="card-link">Close</a>
