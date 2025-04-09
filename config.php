@@ -17,7 +17,5 @@
     // to store portuguese characters correctly
     mysqli_set_charset($connection, 'utf8');
 
-    print_r($connection);
-
 ?>
 

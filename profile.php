@@ -5,13 +5,11 @@
   // ler query do parametro do User query params
 
   if (isset($_GET["id"])) {
-    $userid = $_GET["id"];
+    $userid = mysqli_real_escape_string($connection, $_GET["id"]);
   }
   else {
     die("User id not found");
-  }
-
-  $userid = $_GET["id"];
+  };
 
   $query = "SELECT name, email, avatar, address_name, address_nr, address_postal_code, address_country
   FROM user
@@ -21,15 +19,16 @@
 
   if (mysqli_num_rows($results) > 0) {
     $currentUser = mysqli_fetch_assoc($results);
-  };
+    $query = "SELECT name, email, avatar, address_name, address_nr, address_postal_code, address_country
+    FROM user
+    WHERE iduser = $userid";
+    $avatar = $currentUser["avatar"] == null ? './images/profiles/default.png' : $currentUser["avatar"];
+  }
+  else {
+    die("User does not exist");
+  }
 
- 
-
-// array asscociativo de 3 users
-
-$avatar = $currentUser["avatar"]==null ? './images/profiles/default.png' : $currentUser["avatar"];
-
-// isset e usado para quando o paranto nao existe na base de dados
+// isset e usado para quando o parametro nao existe na base de dados
 
 ?>
 
