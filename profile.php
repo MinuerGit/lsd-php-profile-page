@@ -1,16 +1,33 @@
-<?php $userName = "Carlos Pablo";
+<?php 
+
+  require('config.php');
+
+  // ler query do parametro do User query params
+
+  if (isset($_GET["id"])) {
+    $userid = $_GET["id"];
+  }
+  else {
+    die("User id not found");
+  }
+
+  $userid = $_GET["id"];
+
+  $query = "SELECT name, email, avatar, address_name, address_nr, address_postal_code, address_country
+  FROM user
+  WHERE iduser = $userid";
+
+  $results = mysqli_query($connection, $query);
+
+  if (mysqli_num_rows($results) > 0) {
+    $currentUser = mysqli_fetch_assoc($results);
+  };
+
+ 
 
 // array asscociativo de 3 users
 
-$users = array(
-  array("name" => "Pablo", "email" => "Pablothehorse@gmail.com", "adress" => "Rua dos Cavalos Espanhois 130 4º Drt", "postal" => "243-17", "image" => "./images/profiles/10.jpg"),
-  array("name" => "Gustava", "email" => "Gustavamostarva@gmail.com", "adress" => "Rua dos Molhos ingleses 320 2º Esq", "postal" => "432-1", "image" => "./images/profiles/5.jpg"),
-  array("name" => "Anónimo", "email" => "Anonimo@gmail.com", "adress" => "Rua dos Segredos e Cadeados ??? 5º Lock 33" , "postal" => "###-#", "image" => null)
-);
-
-$currentUser = $users[2];
-
-$image = $currentUser["image"]==null ? './images/profiles/default.png' : $currentUser["image"];
+$avatar = $currentUser["avatar"]==null ? './images/profiles/default.png' : $currentUser["avatar"];
 
 // isset e usado para quando o paranto nao existe na base de dados
 
@@ -49,15 +66,16 @@ $image = $currentUser["image"]==null ? './images/profiles/default.png' : $curren
       <div class="col-12 col-lg-6">
 
         <div class="card text-center">
-          <img src="<?php echo $image; ?>" class="card-img-top mx-auto img-thumbnail rounded-circle " alt="...">
+          <img src="<?php echo $avatar; ?>" class="card-img-top mx-auto img-thumbnail rounded-circle " alt="...">
           <div class="card-body">
             <h5 class="card-title"><?php echo $currentUser["name"]; ?></h5>
             <p class="card-text"><?php echo $currentUser["email"]; ?></p>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item"><?php echo $currentUser["adress"]; ?></li>
-            <li class="list-group-item"><?php echo $currentUser["postal"]; ?></li>
+             <li class="list-group-item"><?php echo $currentUser["address_name"] . " " . $currentUser["address_nr"]; ?></li>
+             <li class="list-group-item"><?php echo $currentUser["address_postal_code"] . " " . $currentUser["address_country"]; ?></li>
           </ul>
+
           <div class="card-body">
             <a href="#" class="card-link">Close</a>
             <a href="#" class="card-link">Edit</a>
